@@ -4,8 +4,9 @@ import {
     View,
      Text 
 } from 'react-native';
-import { styles } from "./style";
 
+import { styles } from "./style";
+import { Avatar } from "../Avatar";
 export function Profile() 
 {
 
@@ -14,6 +15,9 @@ export function Profile()
         <View
             style={styles.container}
         >
+            <Avatar
+                urlImage="https://version.aplicativodeentrega.com.br/uploads/16081547511039099488.png"
+            />
             <View>
                 <View
                     style={styles.user}

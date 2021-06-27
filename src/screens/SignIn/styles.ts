@@ -5,10 +5,9 @@ export const styles = StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
     },
     content: {
-        marginTop: -40,
         paddingHorizontal: 50,
     },
     image: {
@@ -18,19 +17,20 @@ export const styles = StyleSheet.create({
     title: {
         color: theme.colors.heading,
         textAlign: 'center',
-        fontSize: 40,
+        fontSize: 36,
+        paddingTop: 26,
         marginBottom: 16,
         fontFamily: theme.fonts.title700,
-        lineHeight: 40
+        lineHeight: 28
     },
     subtitle: {
-        marginTop: -12,
+        marginTop: -32,
         color: theme.colors.heading,
         textAlign: 'center',
-        fontSize: 15,
-        marginBottom: 44,
+        fontSize: 16,
+        marginBottom: 24,
         fontFamily: theme.fonts.title500,
-        lineHeight: 25
+        lineHeight: 18
 
     },
 });

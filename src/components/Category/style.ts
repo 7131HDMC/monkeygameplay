@@ -16,7 +16,7 @@ export const styles = StyleSheet.create({
         borderRadius: 8,
         justifyContent: 'space-between',
         alignItems: 'center',
-        paddingVertical: 7
+        paddingVertical: 20
     },
     title: {
         fontFamily: theme.fonts.title500,
@@ -24,20 +24,22 @@ export const styles = StyleSheet.create({
         fontSize: 12
     },
     check: {
+        position: "absolute",
+        top: 7,
+        right: 7,
         width: 12,
         height: 12,
         backgroundColor: theme.colors.secondary100,
-        alignSelf: 'flex-end',
         borderWidth: 2,
         borderRadius: 3,
-        marginRight: 7,
     },
     checked: {
+        position: "absolute",
+        top: 7,
+        right: 7,
         width: 10,
         height: 10,
         backgroundColor: theme.colors.primary,
-        alignSelf: 'flex-end',
         borderRadius: 2,
-        marginRight: 7,
     }
 });

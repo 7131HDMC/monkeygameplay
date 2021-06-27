@@ -4,6 +4,9 @@ import { createStackNavigator } from '@react-navigation/stack';
 
 import { Home } from "../screens/Home";
 import { SignIn } from "../screens/SignIn";
+import { theme } from "../global/styles/theme";
+import { AppointmentsDetails } from "../screens/AppointmentsDetails";
+import { AppointmentCreate } from "../screens/AppointmentCreate";
 
 const { Navigator, Screen } = createStackNavigator();
 
@@ -14,7 +17,7 @@ export function AuthRoutes()
             headerMode="none"
             screenOptions={{
                 cardStyle: {
-                    backgroundColor: "transparent"
+                    backgroundColor: theme.colors.secondary100
                 }
             }}
         >
@@ -25,6 +28,14 @@ export function AuthRoutes()
             <Screen
                 name="Home"
                 component={Home}
+            />
+            <Screen
+                name="AppointmentsDetails"
+                component={AppointmentsDetails}
+            />
+            <Screen
+                name="AppointmentCreate"
+                component={AppointmentCreate}
             />
         </Navigator>
     );

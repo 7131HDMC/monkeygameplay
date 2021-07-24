@@ -1,4 +1,4 @@
-# Monkey Game PLay
+# Monkey Game Play
 Projeto iniciado durante participação da next leve week, evento online produzido pela RocketSeat em tutoria do Rodrigo Gonçalves Santana.
 
 ## 💻 Projeto

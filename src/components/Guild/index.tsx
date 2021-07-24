@@ -1,35 +1,54 @@
 import React from 'react';
-import { Image, View } from 'react-native';
+import { 
+  TouchableOpacity, 
+  TouchableOpacityProps, 
+  Text, 
+  View 
+} from 'react-native';
+import { Feather } from '@expo/vector-icons';
 
 import { styles } from './style';
-import DiscordSvg from '../../assets/discord.svg';
+import { theme } from '../../global/styles/theme';
 
-const { CDN_IMAGE } = process.env;
+import { GuildIcon } from '../GuildIcon';
 
-type Props = {
-    guildId: string;
-    iconId: string | null;
+export type GuildProps = {
+  id: string;
+  name: string;
+  icon: string | null;
+  owner: boolean;
 }
 
-export function GuilIcon({ guildId, iconId } : Props)
-{
-    const uri = `${CDN_IMAGE}/icons/${guildId}/${iconId}.png`;
+type Props = TouchableOpacityProps & {
+  data: GuildProps;
+}
 
-    return (
-        <View style={styles.container}>
-            {
-                iconId ?
-                <Image
-                    source={{ uri }}
-                    style={styles.image}
-                    resizeMode="cover"
-                />
-                :
-                <DiscordSvg
-                    width={40}
-                    height={40}
-                />
-            }
+export function Guild({data, ...rest}: Props){
+  return (
+    <TouchableOpacity
+      style={styles.container}
+      activeOpacity={0.7}
+      {...rest}
+    >
+        <GuildIcon guildId={data.id} iconId={data.icon} />
+
+        <View style={styles.content}>
+          <View>
+            <Text style={styles.title}>
+              {data.name}
+            </Text>
+
+            <Text style={styles.type}>
+              { data.owner ? 'Administrador' : 'Convidado'}
+            </Text>
+          </View>
         </View>
-    );
+
+        <Feather 
+          name="chevron-right"
+          color={theme.colors.heading}
+          size={24}        
+        />
+    </TouchableOpacity>
+  );
 }

@@ -7,8 +7,11 @@ import React,
     useEffect,
 } from "react";
 
-import * from AuthSession from 'expo-auth-session';
+import * as AuthSession from 'expo-auth-session';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+
+import { COLLECTION_USERS } from "../configs/database";
+import { api } from '../services/api';
 
 const { SCOPE } = process.env;
 const { CLIENT_ID } = process.env;
@@ -16,8 +19,6 @@ const { CDN_IMAGE } = process.env;
 const { REDIRECT_URI } = process.env;
 const { RESPONSE_TYPE } = process.env;
 
-import { api } from '../services/api';
-import { COLLECTION_USERS } from "../configs/database";
 
 type User = {
     id: string;
@@ -59,12 +60,16 @@ function AuthProvider({ children } : AuthProviderProps)
             setLoading(true);
 
             const authUrl = `${api.defaults.baseURL}/oauth2/authorize?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}&scope=${SCOPE}`;
-            
-            const { type, params } = await AuthSession.startAsync({ authUrl }) as AuthorizationResponse;
 
+            const { type, params } = await AuthSession.startAsync({ authUrl }) as AuthorizationResponse;
+            console.log(type);
+
+            console.log(params);
             if(type === "success" && !params.error) 
             {
+                
                 api.defaults.headers.autorization = `Bearer ${params.access_token}`;
+                console.log(api);
 
                 const userInfo = await api.get('/users/@me');
 
@@ -73,7 +78,7 @@ function AuthProvider({ children } : AuthProviderProps)
                 userInfo.data.avatar = `${CDN_IMAGE}/avatars/${userInfo.data.id}/${userInfo.data.avatar}.png`;
 
                 const userData = {
-                    ...userInfo,
+                    ...userInfo.data,
                     firstName,
                     token: params.access_token    
                 }
